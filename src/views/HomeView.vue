@@ -10,9 +10,5 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "HomeView",
-  setup() {
-    const name = localStorage.getItem("name");
-    return { name };
-  },
 });
 </script>

@@ -97,15 +97,16 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, Ref, computed } from "vue";
-import { getAuth } from "@firebase/auth";
+import { Auth, getAuth } from "@firebase/auth";
 import axios from "axios";
 import { BodyMeasurement } from "../types";
 
 export default defineComponent({
   name: "ProfileView",
   async setup() {
-    const uid = localStorage.getItem("uid");
-    const isLoading = ref(true);
+    const auth: Auth = getAuth();
+    const uid = auth.currentUser?.uid;
+    const isLoading: Ref<boolean> = ref(true);
     const measurements: Ref<BodyMeasurement[]> = ref([]);
     const goal: Ref<number> = ref(0);
     const goalDiff = computed(() => {
@@ -131,7 +132,6 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      const auth = getAuth();
       isLoading.value = true;
       axios
         .get(

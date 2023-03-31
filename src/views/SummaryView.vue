@@ -33,13 +33,15 @@ import { defineComponent, ref, onMounted, Ref, computed } from "vue";
 import axios from "axios";
 import LineChart from "../chart/LineChart.vue";
 import { IBodyMeasurement } from "../types";
+import { Auth, getAuth } from "@firebase/auth";
 
 export default defineComponent({
   name: "SummaryView",
   components: { LineChart },
   async setup() {
-    const uid = localStorage.getItem("uid");
-    const isLoading = ref(true);
+    const auth: Auth = getAuth();
+    const uid = auth.currentUser?.uid;
+    const isLoading: Ref<boolean> = ref(true);
     const measurement: Ref<IBodyMeasurement[]> = ref([]);
 
     const options = {

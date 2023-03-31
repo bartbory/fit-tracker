@@ -20,11 +20,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { Ref, onMounted, ref } from "vue";
 import { Auth, getAuth, onAuthStateChanged, signOut } from "@firebase/auth";
 import router from "../../router";
 
-const isLoggedIn = ref(false);
+const isLoggedIn: Ref<boolean> = ref(false);
 let auth: Auth;
 
 onMounted(() => {

@@ -31,7 +31,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, computed } from "vue";
+import { defineComponent, ref, computed, Ref } from "vue";
 import { useRouter } from "vue-router";
 import {
   getAuth,
@@ -39,19 +39,18 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import createUser from "../helpers/createUser";
-// import getUserData from "@/helpers/getUserData";
 
 export default defineComponent({
   name: "UserLogin",
   async setup() {
     const router = useRouter();
-    const email = ref("");
-    const pass = ref("");
-    const name = ref("");
+    const email: Ref<string> = ref("");
+    const pass: Ref<string> = ref("");
+    const name: Ref<string> = ref("");
 
-    const formIsValid = ref(true);
-    const error = ref("");
-    const mode = ref("login");
+    const formIsValid: Ref<boolean> = ref(true);
+    const error: Ref<string> = ref("");
+    const mode: Ref<"login" | "register"> = ref("login");
 
     const switchButtonCaption = computed(() => {
       if (mode.value === "login") {
@@ -71,10 +70,8 @@ export default defineComponent({
     function switchAuthMode() {
       if (mode.value === "login") {
         mode.value = "register";
-        console.log("zmieniam na register");
       } else {
         mode.value = "login";
-        console.log("zmieniam na login");
       }
     }
     function submitForm() {
@@ -106,20 +103,17 @@ export default defineComponent({
           })
           .catch((error) => {
             const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            error.value = error.message;
           });
       } else if (mode.value === "login") {
         signInWithEmailAndPassword(getAuth(), email.value, pass.value)
           .then((data) => {
-            console.log("Successfully Logged!", data);
             localStorage.setItem("uid", `${data.user.uid}`);
             router.push(`/user`);
           })
           .catch((error) => {
             const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            error.value = error.message;
           });
       }
     }

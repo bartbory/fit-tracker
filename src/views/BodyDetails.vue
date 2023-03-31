@@ -58,7 +58,7 @@ export default defineComponent({
     const birthYear: Ref<number> = ref(0);
     const height: Ref<number> = ref(0);
     const weightGoal: Ref<number> = ref(0);
-    const active = ref("tab--active");
+    const active = "tab--active";
 
     function setGender(g: "male" | "female") {
       gender.value = g;
@@ -134,7 +134,7 @@ export default defineComponent({
   height: 32px;
   line-height: 32px;
   border-radius: 4px;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .tab--active {

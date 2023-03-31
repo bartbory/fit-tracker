@@ -38,17 +38,17 @@
 import { Ref, computed, defineComponent, ref, onMounted, watch } from "vue";
 import { IUser } from "../types";
 import axios from "axios";
-import { getAuth } from "@firebase/auth";
+import { Auth, getAuth } from "@firebase/auth";
 export default defineComponent({
   name: "CalculationView",
   setup() {
     // const uid = localStorage.getItem("uid");
-    const auth = getAuth();
+    const auth: Auth = getAuth();
     const uid = auth.currentUser?.uid;
-    const isLoading = ref(true);
+    const isLoading: Ref<boolean> = ref(true);
     const data: Ref<IUser | null> = ref(null);
     const measurements: Ref<number[]> = ref([]);
-    const lastIndex = ref(-1);
+    const lastIndex: Ref<number> = ref(-1);
     let age: Ref<number> = ref(18);
     let height: Ref<number> = ref(50);
     let weight: Ref<number> = ref(160);

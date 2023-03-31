@@ -2,18 +2,24 @@
   <section>
     <form @submit.prevent="submitForm">
       <div class="form--row" v-if="mode === 'register'">
-        <label>Imię</label>
-        <input type="text" id="name" v-model.trim="name" />
+        <div class="form--input">
+          <label>Imię</label>
+          <input type="text" id="name" v-model.trim="name" />
+        </div>
       </div>
       <div class="form--row">
-        <label>E-mail</label>
-        <input type="email" id="email" v-model.trim="email" />
+        <div class="form--input">
+          <label>E-mail</label>
+          <input type="email" id="email" v-model.trim="email" />
+        </div>
       </div>
       <div class="form--row">
-        <label>Password</label>
-        <input type="password" id="password" v-model.trim="pass" />
+        <div class="form--input">
+          <label>Hasło</label>
+          <input type="password" id="password" v-model.trim="pass" />
+          <p v-if="!formIsValid">{{ error }}</p>
+        </div>
       </div>
-      <p v-if="!formIsValid">Error</p>
       <div class="actions">
         <button type="submit">{{ switchCaption }}</button>
         <button @click="switchAuthMode" type="button">
@@ -44,6 +50,7 @@ export default defineComponent({
     const name = ref("");
 
     const formIsValid = ref(true);
+    const error = ref("");
     const mode = ref("login");
 
     const switchButtonCaption = computed(() => {
@@ -78,6 +85,8 @@ export default defineComponent({
         pass.value.length < 6
       ) {
         formIsValid.value = false;
+        error.value =
+          "Sprawdź poprawność danych, hasło musi posiadać przynajmniej 6 znaków";
         return;
       } else if (mode.value === "register") {
         createUserWithEmailAndPassword(getAuth(), email.value, pass.value)
@@ -130,6 +139,7 @@ export default defineComponent({
       switchButtonCaption,
       signInWithGoogle,
       switchCaption,
+      error,
     };
   },
 });
@@ -138,6 +148,37 @@ export default defineComponent({
 <style scoped>
 form {
   margin: 0 auto;
+}
+
+.form--row {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+  max-width: 840px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  column-gap: 40px;
+}
+.form--input {
+  position: relative;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+label {
+  position: absolute;
+  top: -4px;
+  left: 16px;
+  font-size: 12px;
+  text-align: right;
+  flex: 0 0 40%;
+}
+input,
+select {
+  flex: 0 0 100%;
 }
 .actions {
   margin: 0 auto;

@@ -46,6 +46,7 @@ h3 {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 16px 24px;
+  overflow: hidden;
 }
 section {
   max-width: 1140px;

@@ -1,8 +1,5 @@
 <template>
-  <div class="card">
-    <slot name="title"></slot>
-    <slot></slot>
-  </div>
+  <div class="card"><slot name="title"></slot> <slot></slot></div>
 </template>
 
 <style scoped>
@@ -13,8 +10,8 @@
   align-items: flex-start;
   padding: 16px;
   border-radius: 8px;
-  background: var(--highlight2-15);
-  border: 1px solid var(--highlight2);
+  background: var(--highlight-15);
+  border: 1px solid var(--highlight-15);
   min-width: 272px;
   flex-grow: 1;
   margin-top: 8px;

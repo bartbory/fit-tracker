@@ -1,7 +1,6 @@
 <template>
   <section>
-    <p v-if="isLoading">Loading...</p>
-    <form @submit.prevent="submitForm" v-else>
+    <form @submit.prevent="submitForm">
       <BaseTab
         title="Gender"
         :options="tabOptions"
@@ -54,27 +53,27 @@
           <p class="description op60">{{ palDesc }}</p>
         </template>
       </base-info>
-      <button type="submit">Zaktualizuj</button>
+      <base-button type="submit" mode="primary" text="Zapisz"></base-button>
     </form>
   </section>
 </template>
 
 <script lang="ts">
-import { Ref, defineComponent, ref, onMounted } from "vue";
-import axios from "axios";
+import { Ref, defineComponent, ref } from "vue";
 import updateDetails from "../helpers/updateDetails";
 import { IUser, CustomInput } from "../types";
-import { getAuth, onAuthStateChanged } from "@firebase/auth";
 import BaseTab from "../components/ui/BaseTab.vue";
 import BaseInput from "../components/ui/BaseInput.vue";
 import IconButton from "../components/ui/IconButton.vue";
 import palLevel from "../helpers/palLevel";
 import { computed } from "@vue/reactivity";
+import router from "../router";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
-  name: "BodyDetails",
+  name: "BodySetup",
   setup() {
-    const uid = localStorage.getItem("uid");
+    const router = useRouter();
     const isLoading: Ref<boolean> = ref(true);
     const data: Ref<IUser | null> = ref(null);
     const gender: Ref<"male" | "female"> = ref("male");
@@ -132,33 +131,9 @@ export default defineComponent({
         pal: pal.value,
       };
       updateDetails(userDetails);
+      router.push({ name: "profile" });
     }
-    onMounted(() => {
-      const auth = getAuth();
-      isLoading.value = true;
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          axios
-            .get(
-              `https://fittracker-60473-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`
-            )
-            .then((response) => {
-              if (response.data.details) {
-                const responseData = response.data;
-                data.value = responseData;
-                birthYear.value = responseData.details.birthYear;
-                height.value = responseData.details.height;
-                weightGoal.value = responseData.details.weightGoal;
-                gender.value = responseData.details.gender;
-                pal.value = responseData.details.pal;
-                isLoading.value = false;
-              } else {
-                data.value === null;
-              }
-            });
-        }
-      });
-    });
+
     return {
       data,
       gender,

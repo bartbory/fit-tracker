@@ -8,7 +8,11 @@
       >Detale</router-link
     >
     <router-link :to="{ name: 'measurement' }" v-if="isLoggedIn"
-      >Wymiary</router-link
+      ><icon
+        name="ico_increment"
+        :size="50"
+        color="#5096ec"
+      />Wymiary</router-link
     >
     <router-link :to="{ name: 'summary' }" v-if="isLoggedIn"
       >Efekty</router-link
@@ -54,18 +58,5 @@ nav {
   column-gap: 16px;
 }
 
-nav a {
-  padding: 8px 16px;
-  text-decoration: none;
-  font-weight: bold;
-  color: var(--font);
-  border-radius: 8px;
-  background: var(--highlight);
-}
 
-nav a.router-link-exact-active {
-  color: var(--highlight);
-  border-radius: 8px;
-  background: var(--font);
-}
 </style>

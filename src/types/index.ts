@@ -3,6 +3,7 @@ export interface UserDetails {
   birthYear: number;
   height: number;
   weightGoal: number;
+  pal: number;
 }
 export interface BodyMeasurement {
   weight: number;
@@ -33,4 +34,11 @@ export interface User {
 export interface IUser extends User {
   measurements: BodyMeasurement[];
   details: UserDetails;
+}
+
+export interface CustomInput {
+  id: string | number;
+  label: string;
+  type: "number" | "text";
+  inputMode: "text" | "decimal" | "numeric";
 }

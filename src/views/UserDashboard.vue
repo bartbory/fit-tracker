@@ -1,5 +1,4 @@
 <template>
-  <h1>Cześć {{ name }} !</h1>
   <Suspense>
     <RouterView />
   </Suspense>

@@ -4,6 +4,10 @@ import App from "./App.vue";
 import router from "./router";
 import { initializeApp } from "firebase/app";
 import BaseCard from "./components/ui/BaseCard.vue";
+import BaseInfo from "./components/ui/BaseInfo.vue";
+import NavButton from "./components/ui/NavButton.vue";
+import BaseButton from "./components/ui/BaseButton.vue";
+import Icon from "./components/ui/Icon.vue";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
@@ -21,6 +25,10 @@ initializeApp(firebaseConfig);
 const app = createApp(App);
 
 app.component("base-card", BaseCard);
+app.component("base-info", BaseInfo);
+app.component("nav-button", NavButton);
+app.component("base-button", BaseButton);
+app.component("icon", Icon);
 
 app.use(router);
 

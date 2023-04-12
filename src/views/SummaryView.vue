@@ -1,27 +1,27 @@
 <template>
-  <section class="container">
+  <section>
     <p>Tutaj znajdziesz wykresy Twoich przemian</p>
     <div class="container--chart">
       <base-card>
-        <h3>Waga</h3>
+        <h3>Weight</h3>
         <LineChart :data="dataWeight" :options="options" />
       </base-card>
     </div>
     <div class="container--chart">
       <base-card>
-        <h3>Korpus</h3>
+        <h3>Corpus</h3>
         <LineChart :data="data" :options="options" />
       </base-card>
     </div>
     <div class="container--chart">
       <base-card>
-        <h3>Ręce</h3>
+        <h3>Arms</h3>
         <LineChart :data="dataArms" :options="options" />
       </base-card>
     </div>
     <div class="container--chart">
       <base-card>
-        <h3>Nogi</h3>
+        <h3>Legs</h3>
         <LineChart :data="dataLegs" :options="options" />
       </base-card>
     </div>
@@ -79,7 +79,7 @@ export default defineComponent({
         legend: {
           display: true,
           color: "#ffffff",
-          position: "right",
+          position: "bottom",
           labels: {
             align: "bottom",
             color: "#ffffff",
@@ -95,10 +95,8 @@ export default defineComponent({
         ),
         datasets: [
           {
-            label: "Waga",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Weight",
+            backgroundColor: `rgb(13, 100, 251)`,
             data: measurement.value.map((m) => m.weight),
           },
         ],
@@ -112,31 +110,23 @@ export default defineComponent({
         ),
         datasets: [
           {
-            label: "Kark",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Neck",
+            backgroundColor: `rgb(13, 100, 251)`,
             data: measurement.value.map((m) => m.neck),
           },
           {
-            label: "Klatka piersiowa",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Chest",
+            backgroundColor: `rgb(13, 20, 255)`,
             data: measurement.value.map((m) => m.chest),
           },
           {
-            label: "Pas",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Waist",
+            backgroundColor: `rgb(13, 251, 237)`,
             data: measurement.value.map((m) => m.waist),
           },
           {
-            label: "Biodra",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Hips",
+            backgroundColor: `rgb(13, 201, 107)`,
             data: measurement.value.map((m) => m.hips),
           },
         ],
@@ -150,32 +140,24 @@ export default defineComponent({
         ),
         datasets: [
           {
-            label: "P. biceps",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
-            data: measurement.value.map((m) => m.rightArm),
-          },
-          {
-            label: "L. biceps",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Left biceps",
+            backgroundColor: `rgb(13, 20, 255)`,
             data: measurement.value.map((m) => m.leftArm),
           },
           {
-            label: "P. przedramie",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
-            data: measurement.value.map((m) => m.rightForearm),
+            label: "Right biceps",
+            backgroundColor: `rgb(13, 100, 251)`,
+            data: measurement.value.map((m) => m.rightArm),
           },
           {
-            label: "L. przedramie",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Left forearm",
+            backgroundColor: `rgb(13, 201, 107)`,
             data: measurement.value.map((m) => m.leftForearm),
+          },
+          {
+            label: "Right forearm",
+            backgroundColor: `rgb(13, 251, 237)`,
+            data: measurement.value.map((m) => m.rightForearm),
           },
         ],
       };
@@ -188,32 +170,25 @@ export default defineComponent({
         ),
         datasets: [
           {
-            label: "P. udo",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
-            data: measurement.value.map((m) => m.rightThigh),
-          },
-          {
-            label: "L. udo",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
+            label: "Left thigh",
+            backgroundColor: `rgb(13, 20, 255)`,
             data: measurement.value.map((m) => m.leftThigh),
           },
           {
-            label: "P. łydka",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
-            data: measurement.value.map((m) => m.rightCalf),
+            label: "Right thigh",
+            backgroundColor: `rgb(13, 100, 251)`,
+            data: measurement.value.map((m) => m.rightThigh),
+          },
+
+          {
+            label: "Left calf",
+            backgroundColor: `rgb(13, 201, 107)`,
+            data: measurement.value.map((m) => m.leftCalf),
           },
           {
-            label: "L. łydka",
-            backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(
-              16
-            )}`,
-            data: measurement.value.map((m) => m.leftCalf),
+            label: "Right calf",
+            backgroundColor: `rgb(13, 251, 237)`,
+            data: measurement.value.map((m) => m.rightCalf),
           },
         ],
       };
@@ -275,6 +250,6 @@ export default defineComponent({
   row-gap: 48px;
 }
 .container--chart {
-  width: 50%;
+  width: 100%;
 }
 </style>

@@ -1,93 +1,116 @@
 <template>
   <section>
-    <h1>Twój postęp</h1>
+    <h3 v-if="measurements.length >= 1">
+      <span class="highlight"> {{ timeDistance() }} </span> days from last
+      measures
+    </h3>
     <div class="infobox" v-if="measurements.length <= 1">
-      Tutaj znajdziesz swoje postępy, kiedy będziesz dodawać pomiary. Jeżeli
-      jeszcze tego nie zrobiłeś,
-      <router-link :to="{ name: 'measurement' }">dodaj je teraz</router-link>
+      <nav-button
+        name="measurement"
+        mode="secondary"
+        text="Dodaj pomiar"
+      ></nav-button>
+      <base-info
+        ><p>
+          After 2 measurements you gonna see your progress between two last
+          measurements. <span class="highlight">Keep tracking!</span>
+        </p></base-info
+      >
     </div>
     <div class="container" v-else>
+      <p class="description">Your progress between two last measurements</p>
       <base-card>
-        <template #title><h3>Waga</h3></template>
-        <template #values>
-          <div class="parent">
-            <div class="div5">
-              <p class="title">Zmiana wagi:</p>
-              <p class="value">{{ changeCalc("weight") }} kg</p>
-            </div>
-            <div class="div6">
-              <p class="title">Do celu pozostało:</p>
-              <p class="value">{{ goalDiff }} kg</p>
-            </div>
+        <template #title
+          ><div class="row--values">
+            <h3>Weight</h3>
+            <p class="changes">{{ showTwoLastMeasures("weight") }}</p>
+            <h1 class="highlight">{{ changeCalc("weight") }} kg</h1>
+          </div></template
+        >
+        <template #default>
+          <div class="row--values">
+            <p class="title" v-if="goalDiff > 0">
+              <span class="highlight">{{ goalDiff }} kg</span> left to achieve
+              your goal. Keep training!
+            </p>
+            <p class="title" v-else>
+              <span class="highlight">You did it!!!</span> Good job!
+            </p>
           </div>
         </template>
       </base-card>
       <base-card>
-        <template #title><h3>Obwody korups</h3></template>
-        <template #values>
-          <div class="parent">
-            <div class="div1">
-              <p class="title">Kark:</p>
-              <p class="value">{{ changeCalc("neck") }} cm</p>
-            </div>
-            <div class="div2">
-              <p class="title">Klatka:</p>
-              <p class="value">{{ changeCalc("chest") }} cm</p>
-            </div>
-            <div class="div3">
-              <p class="title">Pas:</p>
-              <p class="value">{{ changeCalc("waist") }} cm</p>
-            </div>
-            <div class="div4">
-              <p class="title">Biodra:</p>
-              <p class="value">{{ changeCalc("hips") }} cm</p>
-            </div>
+        <template #title><h3>Corpus circumferences</h3></template>
+        <template #default>
+          <div class="row--values">
+            <p class="title">Neck:</p>
+            <p class="changes">{{ showTwoLastMeasures("neck") }}</p>
+            <h3 class="highlight">{{ changeCalc("neck") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Chest:</p>
+            <p class="changes">{{ showTwoLastMeasures("chest") }}</p>
+            <h3 class="highlight">{{ changeCalc("chest") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Waist:</p>
+            <p class="changes">{{ showTwoLastMeasures("waist") }}</p>
+            <h3 class="highlight">{{ changeCalc("waist") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Hips:</p>
+            <p class="changes">{{ showTwoLastMeasures("hips") }}</p>
+            <h3 class="highlight">{{ changeCalc("hips") }} cm</h3>
           </div>
         </template>
       </base-card>
       <base-card>
-        <template #title><h3>Obwody ręce</h3></template>
-        <template #values>
-          <div class="parent">
-            <div class="div1">
-              <p class="title">Lewy biceps:</p>
-              <p class="value">{{ changeCalc("leftArm") }} cm</p>
-            </div>
-            <div class="div2">
-              <p class="title">Prawy biceps:</p>
-              <p class="value">{{ changeCalc("rightArm") }} cm</p>
-            </div>
-            <div class="div3">
-              <p class="title">Lewe przedramie:</p>
-              <p class="value">{{ changeCalc("leftForearm") }} cm</p>
-            </div>
-            <div class="div4">
-              <p class="title">Prawe przedramie:</p>
-              <p class="value">{{ changeCalc("rightForearm") }} cm</p>
-            </div>
+        <template #title><h3>Arms circumferences</h3></template>
+        <template #default>
+          <div class="row--values">
+            <p class="title">Left biceps:</p>
+            <p class="changes">{{ showTwoLastMeasures("leftArm") }}</p>
+            <h3 class="highlight">{{ changeCalc("leftArm") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Right biceps:</p>
+            <p class="changes">{{ showTwoLastMeasures("rightArm") }}</p>
+            <h3 class="highlight">{{ changeCalc("rightArm") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Left forearm:</p>
+            <p class="changes">{{ showTwoLastMeasures("leftForearm") }}</p>
+            <h3 class="highlight">{{ changeCalc("leftForearm") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Right forearm:</p>
+            <p class="changes">{{ showTwoLastMeasures("rightForearm") }}</p>
+            <h3 class="highlight">{{ changeCalc("rightForearm") }} cm</h3>
           </div>
         </template></base-card
       >
       <base-card>
-        <template #title><h3>Obwody nogi</h3></template>
-        <template #values>
-          <div class="parent">
-            <div class="div1">
-              <p class="title">Lewe udo:</p>
-              <p class="value">{{ changeCalc("leftThigh") }} cm</p>
-            </div>
-            <div class="div2">
-              <p class="title">Prawe udo:</p>
-              <p class="value">{{ changeCalc("rightThigh") }} cm</p>
-            </div>
-            <div class="div3">
-              <p class="title">Lewa łydka:</p>
-              <p class="value">{{ changeCalc("leftCalf") }} cm</p>
-            </div>
-            <div class="div4">
-              <p class="title">Prawa łydka:</p>
-              <p class="value">{{ changeCalc("rightCalf") }} cm</p>
-            </div>
+        <template #title><h3>Legs circumferences</h3></template>
+        <template #default>
+          <div class="row--values">
+            <p class="title">Left thigh:</p>
+            <p class="changes">{{ showTwoLastMeasures("leftThigh") }}</p>
+            <h3 class="highlight">{{ changeCalc("leftThigh") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Right thigh:</p>
+            <p class="changes">{{ showTwoLastMeasures("rightThigh") }}</p>
+            <h3 class="highlight">{{ changeCalc("rightThigh") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Left calf:</p>
+            <p class="changes">{{ showTwoLastMeasures("leftCalf") }}</p>
+            <h3 class="highlight">{{ changeCalc("leftCalf") }} cm</h3>
+          </div>
+          <div class="row--values">
+            <p class="title">Right calf:</p>
+            <p class="changes">{{ showTwoLastMeasures("rightCalf") }}</p>
+            <h3 class="highlight">{{ changeCalc("rightCalf") }} cm</h3>
           </div>
         </template>
       </base-card>
@@ -109,6 +132,7 @@ export default defineComponent({
     const isLoading: Ref<boolean> = ref(true);
     const measurements: Ref<BodyMeasurement[]> = ref([]);
     const goal: Ref<number> = ref(0);
+    const dates: Ref<Date[]> = ref([]);
     const goalDiff = computed(() => {
       const lastIndex = measurements.value.length;
       const last = measurements.value[lastIndex - 1];
@@ -129,6 +153,28 @@ export default defineComponent({
       } else {
         return measurements.value[lastIndex - 1][key];
       }
+    }
+
+    function showTwoLastMeasures(key: keyof BodyMeasurement) {
+      const lastIndex = measurements.value.length;
+      if (measurements.value.length > 1) {
+        return `${measurements.value[lastIndex - 2][key]} ->
+          ${measurements.value[lastIndex - 1][key]}`;
+      } else {
+        return measurements.value[lastIndex - 1][key];
+      }
+    }
+
+    function timeDistance() {
+      const lastIndex = dates.value.length;
+      const last = new Date(dates.value[lastIndex - 1]);
+      return (
+        (new Date().getTime() - new Date(last).getTime()) /
+        1000 /
+        60 /
+        60 /
+        24
+      ).toFixed(0);
     }
 
     onMounted(() => {
@@ -157,6 +203,8 @@ export default defineComponent({
               rightThigh: measures[key].rightThigh,
             };
 
+            dates.value.push(measures[key].date);
+
             measurements.value.push(measure);
           }
           isLoading.value = false;
@@ -169,57 +217,14 @@ export default defineComponent({
       goalDiff,
       goal,
       changeCalc,
+      showTwoLastMeasures,
+      timeDistance,
     };
   },
 });
 </script>
 
 <style scoped>
-.container {
-  margin-top: 48px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 48px;
-  flex-wrap: wrap;
-}
-
-.container >>> .card {
-  min-height: 160px;
-  flex: 0 1 40%;
-  justify-content: space-between;
-}
-
-.parent {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  align-items: center;
-  width: 100%;
-}
-
-.div1 {
-  grid-area: 1 / 1 / 2 / 2;
-}
-.div2 {
-  grid-area: 1 / 2 / 2 / 3;
-}
-.div3 {
-  grid-area: 2 / 1 / 3 / 2;
-}
-.div4 {
-  grid-area: 2 / 2 / 3 / 3;
-}
-.div5 {
-  grid-area: 1/1/2/2;
-}
-.div6 {
-  grid-area: 1/2/2/3;
-}
-
-.title {
-  font-size: 12px;
-}
-</style>
+.infobox{
+  margin: 24px 0;
+}</style>

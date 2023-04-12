@@ -3,8 +3,9 @@ import HomeView from "../views/HomeView.vue";
 import { getAuth } from "firebase/auth";
 
 const routes: Array<RouteRecordRaw> = [
+  { path: "/", redirect: "/home" },
   {
-    path: "/",
+    path: "/home",
     name: "home",
     component: HomeView,
   },
@@ -15,11 +16,17 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "login" */ "../views/UserLogin.vue"),
   },
   {
+    path: "/register",
+    name: "register",
+    component: () =>
+      import(/* webpackChunkName: "login" */ "../views/UserRegister.vue"),
+  },
+  {
     path: "/user",
     name: "user",
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/UserDashboard.vue"),
-    // meta: { requiresAuth: true },
+    meta: { requiresAuth: true },
     children: [
       {
         path: "body-measurement",
@@ -34,6 +41,12 @@ const routes: Array<RouteRecordRaw> = [
         name: "details",
         component: () =>
           import(/* webpackChunkName: "details" */ "../views/BodyDetails.vue"),
+      },
+      {
+        path: "body-setup",
+        name: "setup",
+        component: () =>
+          import(/* webpackChunkName: "details" */ "../views/BodySetup.vue"),
       },
       {
         path: "summary",

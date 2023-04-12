@@ -1,71 +1,39 @@
 <template>
-  <TopMenu />
+  <MobileTop v-if="$route.path !== '/home'" />
   <suspense>
     <router-view />
   </suspense>
+  <MobileNav />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, onMounted, ref } from "vue";
+import router from "./router";
 import TopMenu from "./components/nav/TopMenu.vue";
+import MobileNav from "./components/nav/MobileNav.vue";
+import MobileTop from "./components/nav/MobileTop.vue";
+import { Auth, getAuth, onAuthStateChanged } from "@firebase/auth";
 
 export default defineComponent({
-  components: { TopMenu },
+  components: { TopMenu, MobileNav, MobileTop },
+  setup() {
+    const isLoading = ref(false);
+    const isLogged = ref(false);
+    onMounted(() => {
+      const auth: Auth = getAuth();
+      isLoading.value = true;
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          isLogged.value = true;
+          isLoading.value = false;
+        }
+      });
+    });
+    return { isLogged, isLoading };
+  },
 });
 </script>
 
 <style>
-:root {
-  --background: #09062a;
-  --highlight: #6458ec;
-  --highlight-15: rgba(100, 88, 236, 0.1);
-  --font: #f6f2f9;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-body {
-  color: var(--font);
-  background-color: var(--background);
-}
-
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-}
-section {
-  max-width: 1140px;
-  margin: 0 auto;
-}
-
-input,
-select {
-  margin: 16px 0;
-  padding: 8px;
-  color: var(--font);
-  background: var(--highlight-15);
-  border: 1px solid var(--highlight-15);
-  border-radius: 8px;
-}
-
-.highlight {
-  color: var(--highlight);
-  font-weight: 700;
-}
-
-button {
-  min-height: 32px;
-  padding: 8px 16px;
-  border: none;
-  color: white;
-  font-weight: 700;
-  border-radius: 8px;
-  background: var(--highlight);
-  cursor: pointer;
-}
+@import "./assets/styles.css";
 </style>

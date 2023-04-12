@@ -2,29 +2,28 @@
   <section>
     <form @submit.prevent="submitForm">
       <div class="form--row">
+        <label>Imię</label>
+        <input type="text" id="name" v-model.trim="name" />
+      </div>
+      <div class="form--row">
         <label>E-mail</label>
-        <input
-          type="email"
-          id="email"
-          v-model.trim="email"
-          autocomplete="email"
-        />
+        <input type="email" id="email" v-model.trim="email" />
       </div>
       <div class="form--row">
         <label>Hasło</label>
         <input type="password" id="password" v-model.trim="pass" />
       </div>
       <p class="error" v-if="!formIsValid">{{ error }}</p>
-      <base-button text="Login" type="submit" mode="primary"></base-button>
+      <base-button
+        text="Create account"
+        mode="secondary"
+        type="submit"
+      ></base-button>
     </form>
     <div class="container--switch">
       <hr />
-      <p>In case you don’t have an account</p>
-      <nav-button
-        name="register"
-        mode="secondary-alt"
-        text="Create account"
-      ></nav-button>
+      <p>In case you already have an account</p>
+      <nav-button name="login" mode="primary-alt" text="Login"></nav-button>
     </div>
   </section>
 </template>
@@ -32,10 +31,15 @@
 <script lang="ts">
 import { defineComponent, ref, Ref } from "vue";
 import { useRouter } from "vue-router";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import createUser from "../helpers/createUser";
 
 export default defineComponent({
-  name: "UserLogin",
+  name: "UserRegister",
   async setup() {
     const router = useRouter();
     const email: Ref<string> = ref("");
@@ -54,22 +58,28 @@ export default defineComponent({
       ) {
         formIsValid.value = false;
         error.value =
-          "Check your data if e-mail is correct or password have at least 6 char";
+          "Check your data. Password must contain at least 6 characters";
         return;
       }
-      signInWithEmailAndPassword(getAuth(), email.value, pass.value)
+      createUserWithEmailAndPassword(getAuth(), email.value, pass.value)
         .then((data) => {
+          if (name.value.trim() !== "")
+            console.log("Successfully registred!", data);
+          const userData = {
+            id: data.user.uid,
+            name: name.value.trim(),
+            email: email.value.trim(),
+            lastMeasure: null,
+          };
           localStorage.setItem("uid", `${data.user.uid}`);
-          router.push(`/user`);
+          localStorage.setItem("name", `${name.value.trim()}`);
+          createUser(userData);
+          router.push({ name: "setup" });
         })
         .catch((error) => {
           const errorCode = error.code;
           error.value = error.message;
         });
-    }
-
-    function signInWithGoogle() {
-      return;
     }
 
     return {
@@ -78,7 +88,6 @@ export default defineComponent({
       name,
       formIsValid,
       submitForm,
-      signInWithGoogle,
       error,
     };
   },

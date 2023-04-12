@@ -50,7 +50,7 @@ h2 {
 }
 section {
   max-width: 1140px;
-  margin: 24px auto 106px;
+  margin: 24px auto 144px;
 }
 
 input,
@@ -97,8 +97,7 @@ button {
   margin-top: 24px;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
   text-align: left;
 }
 
@@ -106,7 +105,6 @@ button {
   margin: 0 auto;
   position: relative;
   width: 100%;
-  max-width: 840px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -128,7 +126,7 @@ label {
   align-items: center;
   width: 100%;
   column-gap: 8px;
-  flex: 0 1 60%;
+  flex: 0 1 100%;
 }
 
 .controler input {
@@ -182,7 +180,7 @@ label {
 
 .cta--fixed {
   position: fixed;
-  bottom: 56px;
+  bottom: 96px;
   left: 50%;
   transform: translateX(-200%);
   animation: fade 0.5s ease-out 0.5s both;
@@ -197,5 +195,13 @@ label {
   100% {
     opacity: 1;
     transform: translateX(-50%);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container--row {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 24px;
   }
 }

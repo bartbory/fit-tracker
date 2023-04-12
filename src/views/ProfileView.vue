@@ -39,81 +39,83 @@
           </div>
         </template>
       </base-card>
-      <base-card>
-        <template #title><h2>Corpus circumferences</h2></template>
-        <template #default>
-          <div class="row--values">
-            <p class="title">Neck:</p>
-            <p class="changes">{{ showTwoLastMeasures("neck") }}</p>
-            <h2 class="highlight">{{ changeCalc("neck") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Chest:</p>
-            <p class="changes">{{ showTwoLastMeasures("chest") }}</p>
-            <h2 class="highlight">{{ changeCalc("chest") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Waist:</p>
-            <p class="changes">{{ showTwoLastMeasures("waist") }}</p>
-            <h2 class="highlight">{{ changeCalc("waist") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Hips:</p>
-            <p class="changes">{{ showTwoLastMeasures("hips") }}</p>
-            <h2 class="highlight">{{ changeCalc("hips") }} cm</h2>
-          </div>
-        </template>
-      </base-card>
-      <base-card>
-        <template #title><h2>Arms circumferences</h2></template>
-        <template #default>
-          <div class="row--values">
-            <p class="title">Left biceps:</p>
-            <p class="changes">{{ showTwoLastMeasures("leftArm") }}</p>
-            <h2 class="highlight">{{ changeCalc("leftArm") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Right biceps:</p>
-            <p class="changes">{{ showTwoLastMeasures("rightArm") }}</p>
-            <h2 class="highlight">{{ changeCalc("rightArm") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Left forearm:</p>
-            <p class="changes">{{ showTwoLastMeasures("leftForearm") }}</p>
-            <h2 class="highlight">{{ changeCalc("leftForearm") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Right forearm:</p>
-            <p class="changes">{{ showTwoLastMeasures("rightForearm") }}</p>
-            <h2 class="highlight">{{ changeCalc("rightForearm") }} cm</h2>
-          </div>
-        </template></base-card
-      >
-      <base-card>
-        <template #title><h2>Legs circumferences</h2></template>
-        <template #default>
-          <div class="row--values">
-            <p class="title">Left thigh:</p>
-            <p class="changes">{{ showTwoLastMeasures("leftThigh") }}</p>
-            <h2 class="highlight">{{ changeCalc("leftThigh") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Right thigh:</p>
-            <p class="changes">{{ showTwoLastMeasures("rightThigh") }}</p>
-            <h2 class="highlight">{{ changeCalc("rightThigh") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Left calf:</p>
-            <p class="changes">{{ showTwoLastMeasures("leftCalf") }}</p>
-            <h2 class="highlight">{{ changeCalc("leftCalf") }} cm</h2>
-          </div>
-          <div class="row--values">
-            <p class="title">Right calf:</p>
-            <p class="changes">{{ showTwoLastMeasures("rightCalf") }}</p>
-            <h2 class="highlight">{{ changeCalc("rightCalf") }} cm</h2>
-          </div>
-        </template>
-      </base-card>
+      <div class="container--row">
+        <base-card>
+          <template #title><h2>Corpus circumferences</h2></template>
+          <template #default>
+            <div class="row--values">
+              <p class="title">Neck:</p>
+              <p class="changes">{{ showTwoLastMeasures("neck") }}</p>
+              <h2 class="highlight">{{ changeCalc("neck") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Chest:</p>
+              <p class="changes">{{ showTwoLastMeasures("chest") }}</p>
+              <h2 class="highlight">{{ changeCalc("chest") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Waist:</p>
+              <p class="changes">{{ showTwoLastMeasures("waist") }}</p>
+              <h2 class="highlight">{{ changeCalc("waist") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Hips:</p>
+              <p class="changes">{{ showTwoLastMeasures("hips") }}</p>
+              <h2 class="highlight">{{ changeCalc("hips") }} cm</h2>
+            </div>
+          </template>
+        </base-card>
+        <base-card>
+          <template #title><h2>Arms circumferences</h2></template>
+          <template #default>
+            <div class="row--values">
+              <p class="title">Left biceps:</p>
+              <p class="changes">{{ showTwoLastMeasures("leftArm") }}</p>
+              <h2 class="highlight">{{ changeCalc("leftArm") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Right biceps:</p>
+              <p class="changes">{{ showTwoLastMeasures("rightArm") }}</p>
+              <h2 class="highlight">{{ changeCalc("rightArm") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Left forearm:</p>
+              <p class="changes">{{ showTwoLastMeasures("leftForearm") }}</p>
+              <h2 class="highlight">{{ changeCalc("leftForearm") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Right forearm:</p>
+              <p class="changes">{{ showTwoLastMeasures("rightForearm") }}</p>
+              <h2 class="highlight">{{ changeCalc("rightForearm") }} cm</h2>
+            </div>
+          </template></base-card
+        >
+        <base-card>
+          <template #title><h2>Legs circumferences</h2></template>
+          <template #default>
+            <div class="row--values">
+              <p class="title">Left thigh:</p>
+              <p class="changes">{{ showTwoLastMeasures("leftThigh") }}</p>
+              <h2 class="highlight">{{ changeCalc("leftThigh") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Right thigh:</p>
+              <p class="changes">{{ showTwoLastMeasures("rightThigh") }}</p>
+              <h2 class="highlight">{{ changeCalc("rightThigh") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Left calf:</p>
+              <p class="changes">{{ showTwoLastMeasures("leftCalf") }}</p>
+              <h2 class="highlight">{{ changeCalc("leftCalf") }} cm</h2>
+            </div>
+            <div class="row--values">
+              <p class="title">Right calf:</p>
+              <p class="changes">{{ showTwoLastMeasures("rightCalf") }}</p>
+              <h2 class="highlight">{{ changeCalc("rightCalf") }} cm</h2>
+            </div>
+          </template>
+        </base-card>
+      </div>
     </div>
     <nav-button
       v-if="measurements.length >= 2"

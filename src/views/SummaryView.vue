@@ -1,28 +1,30 @@
 <template>
   <section>
-    <div class="container--chart">
-      <base-card>
-        <h2>Weight</h2>
-        <LineChart :data="dataWeight" :options="options" />
-      </base-card>
-    </div>
-    <div class="container--chart">
-      <base-card>
-        <h2>Corpus</h2>
-        <LineChart :data="data" :options="options" />
-      </base-card>
-    </div>
-    <div class="container--chart">
-      <base-card>
-        <h2>Arms</h2>
-        <LineChart :data="dataArms" :options="options" />
-      </base-card>
-    </div>
-    <div class="container--chart">
-      <base-card>
-        <h2>Legs</h2>
-        <LineChart :data="dataLegs" :options="options" />
-      </base-card>
+    <div class="container--row">
+      <div class="container--chart">
+        <base-card>
+          <h2>Weight</h2>
+          <LineChart :data="dataWeight" :options="options" />
+        </base-card>
+      </div>
+      <div class="container--chart">
+        <base-card>
+          <h2>Corpus</h2>
+          <LineChart :data="data" :options="options" />
+        </base-card>
+      </div>
+      <div class="container--chart">
+        <base-card>
+          <h2>Arms</h2>
+          <LineChart :data="dataArms" :options="options" />
+        </base-card>
+      </div>
+      <div class="container--chart">
+        <base-card>
+          <h2>Legs</h2>
+          <LineChart :data="dataLegs" :options="options" />
+        </base-card>
+      </div>
     </div>
     <nav-button
       class="cta--fixed"
@@ -253,8 +255,18 @@ export default defineComponent({
   align-items: center;
   flex-wrap: wrap;
   row-gap: 48px;
+  column-gap: 48px;
 }
 .container--chart {
-  width: 100%;
+  flex: 1 1 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    flex-direction: row;
+  }
+  .container--chart {
+    flex: 1 1 40%;
+  }
 }
 </style>

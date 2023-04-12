@@ -37,11 +37,11 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 62px;
+  height: 80px;
   background-color: var(--background);
-  padding: 2px 2px 16px;
+  padding: 16px 16px 16px;
   display: flex;
-  column-gap: 2px;
+  column-gap: 8px;
   justify-content: space-evenly;
   z-index: 100;
 }

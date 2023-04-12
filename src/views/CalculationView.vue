@@ -55,38 +55,39 @@
         <p class="description op60">{{ palDesc }}</p>
       </template>
     </base-info>
-
-    <base-card>
-      <template #title
-        ><div class="row--values">
-          <h2>BMI</h2>
-          <h1 class="highlight">{{ bmi }}</h1>
-        </div></template
-      >
-      <template #default>
-        <div class="row--values">
-          <p class="title">
-            {{ bmiMessage }}
-          </p>
-        </div>
-      </template>
-    </base-card>
-    <base-card>
-      <template #title
-        ><div class="row--values">
-          <h2>BMR</h2>
-          <h1 class="highlight">{{ bmr }} kcal</h1>
-        </div></template
-      >
-    </base-card>
-    <base-card>
-      <template #title
-        ><div class="row--values">
-          <h2>CPM</h2>
-          <h1 class="highlight">{{ calcCpm() }} kcal</h1>
-        </div></template
-      >
-    </base-card>
+    <div class="container--row">
+      <base-card>
+        <template #title
+          ><div class="row--values">
+            <h2>BMI</h2>
+            <h1 class="highlight">{{ bmi }}</h1>
+          </div></template
+        >
+        <template #default>
+          <div class="row--values">
+            <p class="title">
+              {{ bmiMessage }}
+            </p>
+          </div>
+        </template>
+      </base-card>
+      <base-card>
+        <template #title
+          ><div class="row--values">
+            <h2>BMR</h2>
+            <h1 class="highlight">{{ bmr }} kcal</h1>
+          </div></template
+        >
+      </base-card>
+      <base-card>
+        <template #title
+          ><div class="row--values">
+            <h2>CPM</h2>
+            <h1 class="highlight">{{ calcCpm() }} kcal</h1>
+          </div></template
+        >
+      </base-card>
+    </div>
     <nav-button
       v-if="isLogged"
       class="cta--fixed"
@@ -262,3 +263,4 @@ export default defineComponent({
   components: { BaseTab, IconButton },
 });
 </script>
+

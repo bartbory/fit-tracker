@@ -54,7 +54,7 @@ export default defineComponent({
       ) {
         formIsValid.value = false;
         error.value =
-          "Check your data if e-mail is correct or password have at least 6 char";
+          "Check your data if e-mail is correct or password have at least 6 characters";
         return;
       }
       signInWithEmailAndPassword(getAuth(), email.value, pass.value)

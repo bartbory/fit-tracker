@@ -2,7 +2,7 @@
   <section>
     <form @submit.prevent="submitForm">
       <div class="form--row">
-        <label>Imię</label>
+        <label>Name</label>
         <input type="text" id="name" v-model.trim="name" />
       </div>
       <div class="form--row">
@@ -10,7 +10,7 @@
         <input type="email" id="email" v-model.trim="email" />
       </div>
       <div class="form--row">
-        <label>Hasło</label>
+        <label>Password</label>
         <input type="password" id="password" v-model.trim="pass" />
       </div>
       <p class="error" v-if="!formIsValid">{{ error }}</p>

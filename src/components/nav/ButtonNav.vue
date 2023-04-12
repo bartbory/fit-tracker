@@ -8,7 +8,7 @@
 <script lang="ts">
 import Icon from "../ui/Icon.vue";
 export default {
-  name: "NavButton",
+  name: "MobileNavButton",
   components: { Icon },
   props: {
     icon: { type: String, required: true },

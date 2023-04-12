@@ -257,3 +257,12 @@ export default defineComponent({
   components: { BaseTab, IconButton },
 });
 </script>
+
+<style scoped>
+form {
+  row-gap: 16px;
+}
+button.secondary {
+  margin-top: 48px;
+}
+</style>

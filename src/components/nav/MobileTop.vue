@@ -27,7 +27,7 @@ export default {
   components: { IconButton },
   setup() {
     const isLogged: Ref<boolean> = ref(false);
-    let auth: Auth;
+    let auth: Auth = getAuth();
     const isOpen: Ref<boolean> = ref(false);
     function toggleMenuHandler() {
       isOpen.value = !isOpen.value;
@@ -36,16 +36,16 @@ export default {
     function closeDropdown() {
       isOpen.value = false;
     }
-    onMounted(() => {
-      auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          isLogged.value = true;
-        } else {
-          isLogged.value = false;
-        }
-      });
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        isLogged.value = true;
+      } else {
+        isLogged.value = false;
+      }
     });
+    // onMounted(() => {
+    //   auth = getAuth();
+    // });
     function handleSignOut() {
       signOut(auth).then(() => {
         localStorage.clear();

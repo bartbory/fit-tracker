@@ -115,6 +115,12 @@
         </template>
       </base-card>
     </div>
+    <nav-button v-if="measurements.length >= 2"
+      class="cta--fixed"
+      mode="secondary"
+      text="Add new measurement"
+      name="measurement"
+    ></nav-button>
   </section>
 </template>
 
@@ -225,6 +231,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.infobox{
+.infobox {
   margin: 24px 0;
-}</style>
+}
+</style>

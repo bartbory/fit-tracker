@@ -54,8 +54,14 @@
           <p class="description op60">{{ palDesc }}</p>
         </template>
       </base-info>
-      <button type="submit">Zaktualizuj</button>
+      <base-button type="submit" text="Update" mode="primary"></base-button>
     </form>
+    <nav-button
+      class="cta--fixed"
+      mode="secondary"
+      text="Add new measurement"
+      name="measurement"
+    ></nav-button>
   </section>
 </template>
 

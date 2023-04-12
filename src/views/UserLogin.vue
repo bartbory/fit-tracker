@@ -60,7 +60,7 @@ export default defineComponent({
       signInWithEmailAndPassword(getAuth(), email.value, pass.value)
         .then((data) => {
           localStorage.setItem("uid", `${data.user.uid}`);
-          router.push(`/user`);
+          router.push({ name: `profile` });
         })
         .catch((error) => {
           const errorCode = error.code;

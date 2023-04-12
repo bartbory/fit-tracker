@@ -1,6 +1,5 @@
 <template>
   <section>
-    <p>Tutaj znajdziesz wykresy Twoich przemian</p>
     <div class="container--chart">
       <base-card>
         <h3>Weight</h3>
@@ -25,6 +24,12 @@
         <LineChart :data="dataLegs" :options="options" />
       </base-card>
     </div>
+    <nav-button
+      class="cta--fixed"
+      mode="secondary"
+      text="Add new measurement"
+      name="measurement"
+    ></nav-button>
   </section>
 </template>
 

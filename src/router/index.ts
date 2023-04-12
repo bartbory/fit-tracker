@@ -32,8 +32,6 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/user",
     name: "user",
-    component: () =>
-      import(/* webpackChunkName: "login" */ "../views/UserDashboard.vue"),
     meta: { requiresAuth: true },
     children: [
       {

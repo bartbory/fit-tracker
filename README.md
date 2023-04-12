@@ -6,7 +6,7 @@ If you don't have account you are able to check the BMI and BMR calculation.
 
 ## LIVE
 
-To check live app visit: ...
+To check live app visit: https://fit-tracker-mu.vercel.app/
 
 ## APP
 

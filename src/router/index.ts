@@ -22,12 +22,26 @@ const routes: Array<RouteRecordRaw> = [
       import(/* webpackChunkName: "login" */ "../views/UserRegister.vue"),
   },
   {
+    path: "/calculation",
+    name: "calculation",
+    component: () =>
+      import(
+        /* webpackChunkName: "calculation" */ "../views/CalculationView.vue"
+      ),
+  },
+  {
     path: "/user",
     name: "user",
     component: () =>
       import(/* webpackChunkName: "login" */ "../views/UserDashboard.vue"),
     meta: { requiresAuth: true },
     children: [
+      {
+        path: "",
+        name: "profile",
+        component: () =>
+          import(/* webpackChunkName: "profile" */ "../views/ProfileView.vue"),
+      },
       {
         path: "body-measurement",
         name: "measurement",
@@ -46,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
         path: "body-setup",
         name: "setup",
         component: () =>
-          import(/* webpackChunkName: "details" */ "../views/BodySetup.vue"),
+          import(/* webpackChunkName: "setup" */ "../views/BodySetup.vue"),
       },
       {
         path: "summary",
@@ -54,21 +68,13 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
           import(/* webpackChunkName: "summary" */ "../views/SummaryView.vue"),
       },
-      {
-        path: "",
-        name: "profile",
-        component: () =>
-          import(/* webpackChunkName: "profile" */ "../views/ProfileView.vue"),
-      },
     ],
   },
   {
-    path: "/calculation",
-    name: "calculation",
+    path: "/:pathMatch(.*)",
+    name: "not-found",
     component: () =>
-      import(
-        /* webpackChunkName: "calculation" */ "../views/CalculationView.vue"
-      ),
+      import(/* webpackChunkName: "notFound" */ "../views/NotFound.vue"),
   },
 ];
 

@@ -22,6 +22,8 @@ export default {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         isLogged.value = true;
+      } else {
+        isLogged.value = false;
       }
     });
     // onMounted(() => {

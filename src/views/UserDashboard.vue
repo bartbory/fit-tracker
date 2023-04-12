@@ -1,6 +1,12 @@
 <template>
   <Suspense>
-    <RouterView />
+    <router-view v-slot="{ Component }">
+      <Suspense>
+        <Transition mode="out-in">
+          <component :is="Component" />
+        </Transition>
+      </Suspense>
+    </router-view>
   </Suspense>
 </template>
 

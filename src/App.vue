@@ -1,9 +1,13 @@
 <template>
   <MobileTop v-if="$route.path !== '/home'" />
-  <suspense>
-    <router-view />
-  </suspense>
   <MobileNav />
+  <router-view v-slot="{ Component }">
+    <Suspense>
+      <Transition mode="out-in">
+        <component :is="Component" />
+      </Transition>
+    </Suspense>
+  </router-view>
 </template>
 
 <script lang="ts">
@@ -36,4 +40,17 @@ export default defineComponent({
 
 <style>
 @import "./assets/styles.css";
+.v-enter-active,
+.v-leave-active {
+  transition: transform 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  transform: translateX(100%);
+}
+.v-enter-to,
+.v-leave-from {
+  transform: translateX(0%);
+}
 </style>

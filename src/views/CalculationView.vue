@@ -59,7 +59,7 @@
     <base-card>
       <template #title
         ><div class="row--values">
-          <h3>BMI</h3>
+          <h2>BMI</h2>
           <h1 class="highlight">{{ bmi }}</h1>
         </div></template
       >
@@ -74,7 +74,7 @@
     <base-card>
       <template #title
         ><div class="row--values">
-          <h3>BMR</h3>
+          <h2>BMR</h2>
           <h1 class="highlight">{{ bmr }} kcal</h1>
         </div></template
       >
@@ -82,11 +82,18 @@
     <base-card>
       <template #title
         ><div class="row--values">
-          <h3>CPM</h3>
+          <h2>CPM</h2>
           <h1 class="highlight">{{ calcCpm() }} kcal</h1>
         </div></template
       >
     </base-card>
+    <nav-button
+      v-if="isLogged"
+      class="cta--fixed"
+      mode="secondary"
+      text="Add new measurement"
+      name="measurement"
+    ></nav-button>
   </section>
 </template>
 
@@ -105,6 +112,7 @@ export default defineComponent({
     const active = "tab--active";
     const isLoading: Ref<boolean> = ref(true);
     const data: Ref<IUser | null> = ref(null);
+    const isLogged: Ref<boolean> = ref(false);
     const measurements: Ref<number[]> = ref([]);
     const lastIndex: Ref<number> = ref(-1);
     const age: Ref<number> = ref(18);
@@ -206,6 +214,7 @@ export default defineComponent({
       isLoading.value = true;
       onAuthStateChanged(auth, (user) => {
         if (user) {
+          isLogged.value = true;
           axios
             .get(
               `https://fittracker-60473-default-rtdb.europe-west1.firebasedatabase.app/users/${user.uid}.json`
@@ -247,6 +256,7 @@ export default defineComponent({
       bmiMessage,
       calcCpm,
       palDesc,
+      isLogged,
     };
   },
   components: { BaseTab, IconButton },

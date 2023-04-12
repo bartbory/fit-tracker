@@ -2,25 +2,25 @@
   <section>
     <div class="container--chart">
       <base-card>
-        <h3>Weight</h3>
+        <h2>Weight</h2>
         <LineChart :data="dataWeight" :options="options" />
       </base-card>
     </div>
     <div class="container--chart">
       <base-card>
-        <h3>Corpus</h3>
+        <h2>Corpus</h2>
         <LineChart :data="data" :options="options" />
       </base-card>
     </div>
     <div class="container--chart">
       <base-card>
-        <h3>Arms</h3>
+        <h2>Arms</h2>
         <LineChart :data="dataArms" :options="options" />
       </base-card>
     </div>
     <div class="container--chart">
       <base-card>
-        <h3>Legs</h3>
+        <h2>Legs</h2>
         <LineChart :data="dataLegs" :options="options" />
       </base-card>
     </div>

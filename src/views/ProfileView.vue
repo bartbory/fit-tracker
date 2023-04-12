@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h3 v-if="measurements.length >= 1">
+    <h2 v-if="measurements.length >= 1">
       <span class="highlight"> {{ timeDistance() }} </span> days from last
       measures
-    </h3>
+    </h2>
     <div class="infobox" v-if="measurements.length <= 1">
       <nav-button
         name="measurement"
@@ -22,7 +22,7 @@
       <base-card>
         <template #title
           ><div class="row--values">
-            <h3>Weight</h3>
+            <h2>Weight</h2>
             <p class="changes">{{ showTwoLastMeasures("weight") }}</p>
             <h1 class="highlight">{{ changeCalc("weight") }} kg</h1>
           </div></template
@@ -40,82 +40,83 @@
         </template>
       </base-card>
       <base-card>
-        <template #title><h3>Corpus circumferences</h3></template>
+        <template #title><h2>Corpus circumferences</h2></template>
         <template #default>
           <div class="row--values">
             <p class="title">Neck:</p>
             <p class="changes">{{ showTwoLastMeasures("neck") }}</p>
-            <h3 class="highlight">{{ changeCalc("neck") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("neck") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Chest:</p>
             <p class="changes">{{ showTwoLastMeasures("chest") }}</p>
-            <h3 class="highlight">{{ changeCalc("chest") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("chest") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Waist:</p>
             <p class="changes">{{ showTwoLastMeasures("waist") }}</p>
-            <h3 class="highlight">{{ changeCalc("waist") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("waist") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Hips:</p>
             <p class="changes">{{ showTwoLastMeasures("hips") }}</p>
-            <h3 class="highlight">{{ changeCalc("hips") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("hips") }} cm</h2>
           </div>
         </template>
       </base-card>
       <base-card>
-        <template #title><h3>Arms circumferences</h3></template>
+        <template #title><h2>Arms circumferences</h2></template>
         <template #default>
           <div class="row--values">
             <p class="title">Left biceps:</p>
             <p class="changes">{{ showTwoLastMeasures("leftArm") }}</p>
-            <h3 class="highlight">{{ changeCalc("leftArm") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("leftArm") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Right biceps:</p>
             <p class="changes">{{ showTwoLastMeasures("rightArm") }}</p>
-            <h3 class="highlight">{{ changeCalc("rightArm") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("rightArm") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Left forearm:</p>
             <p class="changes">{{ showTwoLastMeasures("leftForearm") }}</p>
-            <h3 class="highlight">{{ changeCalc("leftForearm") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("leftForearm") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Right forearm:</p>
             <p class="changes">{{ showTwoLastMeasures("rightForearm") }}</p>
-            <h3 class="highlight">{{ changeCalc("rightForearm") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("rightForearm") }} cm</h2>
           </div>
         </template></base-card
       >
       <base-card>
-        <template #title><h3>Legs circumferences</h3></template>
+        <template #title><h2>Legs circumferences</h2></template>
         <template #default>
           <div class="row--values">
             <p class="title">Left thigh:</p>
             <p class="changes">{{ showTwoLastMeasures("leftThigh") }}</p>
-            <h3 class="highlight">{{ changeCalc("leftThigh") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("leftThigh") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Right thigh:</p>
             <p class="changes">{{ showTwoLastMeasures("rightThigh") }}</p>
-            <h3 class="highlight">{{ changeCalc("rightThigh") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("rightThigh") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Left calf:</p>
             <p class="changes">{{ showTwoLastMeasures("leftCalf") }}</p>
-            <h3 class="highlight">{{ changeCalc("leftCalf") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("leftCalf") }} cm</h2>
           </div>
           <div class="row--values">
             <p class="title">Right calf:</p>
             <p class="changes">{{ showTwoLastMeasures("rightCalf") }}</p>
-            <h3 class="highlight">{{ changeCalc("rightCalf") }} cm</h3>
+            <h2 class="highlight">{{ changeCalc("rightCalf") }} cm</h2>
           </div>
         </template>
       </base-card>
     </div>
-    <nav-button v-if="measurements.length >= 2"
+    <nav-button
+      v-if="measurements.length >= 2"
       class="cta--fixed"
       mode="secondary"
       text="Add new measurement"

@@ -45,9 +45,9 @@ export default defineComponent({
   transition: transform 0.5s ease;
 }
 
-.v-enter-from{transform: translateX(-100%);}
+.v-enter-from{transform: translateX(-120%);}
 .v-leave-to {
-  transform: translateX(100%);
+  transform: translateX(120%);
 }
 .v-enter-to,
 .v-leave-from {

@@ -10,7 +10,7 @@
 <script lang="ts">
 import { Auth, getAuth, onAuthStateChanged } from "@firebase/auth";
 import ButtonNav from "./ButtonNav.vue";
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
 
 export default {
   name: "MobileNav",
@@ -26,8 +26,6 @@ export default {
         isLogged.value = false;
       }
     });
-    // onMounted(() => {
-    // });
     return { isLogged };
   },
 };
@@ -39,11 +37,12 @@ export default {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 48px;
+  height: 62px;
   background-color: var(--background);
-  padding: 2px;
+  padding: 2px 2px 16px;
   display: flex;
   column-gap: 2px;
   justify-content: space-evenly;
+  z-index: 100;
 }
 </style>

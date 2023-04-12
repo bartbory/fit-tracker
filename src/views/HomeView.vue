@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="highlight">FIT TRACKER</h1>
-    <h3>Track the progress <br />of your transformation</h3>
+    <h2>Track the progress <br />of your transformation</h2>
     <nav-button mode="primary-alt" text="Login" name="login" />
     <nav-button mode="secondary-alt" text="Create account" name="register" />
   </div>

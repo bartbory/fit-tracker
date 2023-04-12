@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
     if (getAuth().currentUser) {
       next();
     } else {
-      alert("You don't have access!");
+      // alert("You don't have access!");
       next("/");
     }
   } else {

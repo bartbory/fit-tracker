@@ -1,6 +1,6 @@
 <template>
   <router-link :to="{ name: to }" exact-active-class="active">
-    <Icon :name="'ico_' + icon" color="#ffffff" :size="16" />
+    <Icon :name="'ico_' + icon" color="#ffffff" :size="16" v-if="icon" />
     <p class="title">{{ title }}</p>
   </router-link>
 </template>
@@ -11,7 +11,7 @@ export default {
   name: "MobileNavButton",
   components: { Icon },
   props: {
-    icon: { type: String, required: true },
+    icon: { type: String, required: false },
     title: { type: String, required: true },
     to: { type: String, required: true },
   },

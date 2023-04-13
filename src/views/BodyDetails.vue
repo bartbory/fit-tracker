@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="form--row">
-        <label>Height</label>
+        <label>Height [cm]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="height--" />
           <input type="number" inputmode="decimal" v-model="height" />
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="form--row">
-        <label>Weight goal</label>
+        <label>Weight goal [kg]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="weightGoal--" />
           <input type="number" inputmode="decimal" v-model="weightGoal" />
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="form--row">
-        <label>PAL</label>
+        <label>PAL [1-6]</label>
         <div class="controler">
           <IconButton
             icon="decrement"

@@ -1,25 +1,45 @@
 <template>
   <nav>
-    <router-link to="/" v-if="!isLoggedIn"><p>Home</p></router-link>
-    <router-link :to="{ name: 'profile' }" v-if="isLoggedIn"
-      >Dashboard</router-link
-    >
-    <router-link :to="{ name: 'details' }" v-if="isLoggedIn"
-      >Detale</router-link
-    >
-    <router-link :to="{ name: 'measurement' }" v-if="isLoggedIn"
-      ><icon
-        name="ico_increment"
-        :size="50"
-        color="#5096ec"
-      />Wymiary</router-link
-    >
-    <router-link :to="{ name: 'summary' }" v-if="isLoggedIn"
-      >Efekty</router-link
-    >
-    <router-link :to="{ name: 'calculation' }">Kalkulator</router-link>
-    <router-link :to="{ name: 'login' }" v-if="!isLoggedIn">Login</router-link>
-    <button @click="handleSignOut" v-else>Wyloguj</button>
+    <h1 class="highlight">FIT TRACKER</h1>
+    <div class="navigation">
+      <nav-button
+        name="home"
+        text="Home"
+        mode="primary-alt"
+        v-if="!isLogged"
+      ></nav-button>
+      <nav-button
+        name="profile"
+        mode="primary-alt"
+        text="Dashboard"
+        v-if="isLogged"
+      />
+      <nav-button
+        name="details"
+        mode="primary-alt"
+        text="Details"
+        v-if="isLogged"
+      />
+      <nav-button
+        name="summary"
+        mode="primary-alt"
+        text="Body tracker"
+        v-if="isLogged"
+      />
+      <nav-button name="calculation" mode="primary-alt" text="Calculator" />
+      <nav-button
+        name="login"
+        mode="primary-alt"
+        text="Login"
+        v-if="!isLogged"
+      />
+      <base-button
+        v-if="isLogged"
+        @click="handleSignOut"
+        text="Logout"
+        mode="primary-alt"
+      ></base-button>
+    </div>
   </nav>
 </template>
 
@@ -27,17 +47,18 @@
 import { Ref, onMounted, ref } from "vue";
 import { Auth, getAuth, onAuthStateChanged, signOut } from "@firebase/auth";
 import router from "../../router";
+import NavButton from "../ui/NavButton.vue";
 
-const isLoggedIn: Ref<boolean> = ref(false);
+const isLogged: Ref<boolean> = ref(false);
 let auth: Auth;
 
 onMounted(() => {
   auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      isLoggedIn.value = true;
+      isLogged.value = true;
     } else {
-      isLoggedIn.value = false;
+      isLogged.value = false;
     }
   });
 });
@@ -52,11 +73,18 @@ function handleSignOut() {
 
 <style scoped>
 nav {
-  padding: 30px;
+  padding: 16px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   column-gap: 16px;
 }
 
-
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  column-gap: 8px;
+}
 </style>

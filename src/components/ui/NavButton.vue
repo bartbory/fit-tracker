@@ -1,5 +1,7 @@
 <template>
-  <router-link :to="{ name: name }" :class="mode">{{ text }}</router-link>
+  <router-link :to="{ name: name }" :class="mode" exact-active-class="active">{{
+    text
+  }}</router-link>
 </template>
 
 <script lang="ts">
@@ -34,11 +36,10 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 12px auto;
+  padding: 12px;
   font-size: 12px;
   font-weight: 700;
   border-radius: 4px;
-  min-width: 50%;
   height: 40px;
   margin: 8px 0;
 }
@@ -62,5 +63,10 @@ a {
   background-color: var(--highlight2-15);
   border: 1px solid var(--highlight2-15);
   color: var(--font);
+}
+
+.active {
+  background-color: var(--highlight);
+  border-radius: 4px;
 }
 </style>

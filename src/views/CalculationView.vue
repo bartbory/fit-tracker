@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="form--row">
-        <label>Height</label>
+        <label>Height [cm]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="height--" />
           <input type="number" inputmode="numeric" v-model.lazy="height" />
@@ -25,7 +25,7 @@
         </div>
       </div>
       <div class="form--row">
-        <label>Weight</label>
+        <label>Weight [kg]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="weight--" />
           <input type="number" inputmode="numeric" v-model.lazy="weight" />
@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="form--row">
-        <label>PAL</label>
+        <label>PAL [1-6]</label>
         <div class="controler">
           <IconButton
             icon="decrement"
@@ -263,4 +263,3 @@ export default defineComponent({
   components: { BaseTab, IconButton },
 });
 </script>
-

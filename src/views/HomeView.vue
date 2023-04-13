@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1 class="highlight">FIT TRACKER</h1>
     <h2>Track the progress <br />of your transformation</h2>
     <nav-button mode="primary-alt" text="Login" name="login" />
     <nav-button mode="secondary-alt" text="Create account" name="register" />
@@ -24,7 +23,7 @@ div {
   justify-content: center;
   align-items: center;
 }
-h3 {
+h2 {
   margin: 40px 0;
   text-align: center;
 }

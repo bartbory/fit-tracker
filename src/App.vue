@@ -1,6 +1,7 @@
 <template>
-  <MobileTop v-if="$route.path !== '/home'" />
-  <MobileNav />
+  <TopMenu v-if="!isMobile()" />
+  <MobileTop v-if="$route.path !== '/home' && isMobile()" />
+  <MobileNav v-if="isMobile()" />
   <router-view v-slot="{ Component }">
     <Suspense>
       <Transition mode="out-in">
@@ -23,6 +24,17 @@ export default defineComponent({
   setup() {
     const isLoading = ref(false);
     const isLogged = ref(false);
+    function isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    }
     onMounted(() => {
       const auth: Auth = getAuth();
       isLoading.value = true;
@@ -33,7 +45,7 @@ export default defineComponent({
         }
       });
     });
-    return { isLogged, isLoading };
+    return { isLogged, isLoading, isMobile };
   },
 });
 </script>
@@ -45,7 +57,9 @@ export default defineComponent({
   transition: transform 0.5s ease;
 }
 
-.v-enter-from{transform: translateX(-120%);}
+.v-enter-from {
+  transform: translateX(-120%);
+}
 .v-leave-to {
   transform: translateX(120%);
 }

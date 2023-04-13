@@ -136,10 +136,13 @@ import axios from "axios";
 import { BodyMeasurement } from "../types";
 import BaseTab from "../components/ui/BaseTab.vue";
 import IconButton from "../components/ui/IconButton.vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "BodyMeasurement",
   setup() {
+    const router = useRouter();
+
     const weight: Ref<number> = ref(0);
     const neck: Ref<number> = ref(0);
     const leftArm: Ref<number> = ref(0);
@@ -186,6 +189,7 @@ export default defineComponent({
         date: new Date(),
       };
       sendBodyMeasure(data);
+      router.push({ name: "measurement" });
     }
     onMounted(() => {
       isLoading.value = true;

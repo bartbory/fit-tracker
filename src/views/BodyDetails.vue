@@ -157,10 +157,10 @@ export default defineComponent({
                 weightGoal.value = responseData.details.weightGoal;
                 gender.value = responseData.details.gender;
                 pal.value = responseData.details.pal;
-                isLoading.value = false;
               } else {
                 data.value === null;
               }
+              isLoading.value = true;
             });
         }
       });

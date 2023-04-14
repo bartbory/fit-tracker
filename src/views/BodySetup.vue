@@ -1,5 +1,9 @@
 <template>
   <section>
+    <base-info
+      >Add your body & life details, to help us measure your
+      parameteres</base-info
+    >
     <form @submit.prevent="submitForm">
       <BaseTab
         title="Gender"
@@ -53,7 +57,7 @@
           <p class="description op60">{{ palDesc }}</p>
         </template>
       </base-info>
-      <base-button type="submit" mode="primary" text="Zapisz"></base-button>
+      <base-button type="submit" mode="secondary" text="Zapisz"></base-button>
     </form>
   </section>
 </template>

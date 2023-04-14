@@ -1,5 +1,5 @@
 <template>
-  <TopMenu v-if="!isMobile()" />
+  <TopMenu v-if="!isMobile()" :showMenu="$route.path !== '/user/body-setup'" />
   <MobileTop v-if="$route.path !== '/home' && isMobile()" />
   <MobileNav v-if="isMobile()" />
   <router-view v-slot="{ Component }">

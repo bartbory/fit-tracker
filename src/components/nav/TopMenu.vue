@@ -1,7 +1,7 @@
 <template>
   <nav>
     <h1 class="highlight">FIT TRACKER</h1>
-    <div class="navigation">
+    <div class="navigation" v-if="showMenu">
       <nav-button
         name="home"
         text="Home"
@@ -43,32 +43,38 @@
   </nav>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import { Ref, onMounted, ref } from "vue";
 import { Auth, getAuth, onAuthStateChanged, signOut } from "@firebase/auth";
 import router from "../../router";
 import NavButton from "../ui/NavButton.vue";
 
-const isLogged: Ref<boolean> = ref(false);
-let auth: Auth;
+export default {
+  props: ["showMenu"],
+  setup() {
+    const isLogged: Ref<boolean> = ref(false);
+    let auth: Auth;
 
-onMounted(() => {
-  auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      isLogged.value = true;
-    } else {
-      isLogged.value = false;
+    onMounted(() => {
+      auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          isLogged.value = true;
+        } else {
+          isLogged.value = false;
+        }
+      });
+    });
+
+    function handleSignOut() {
+      signOut(auth).then(() => {
+        localStorage.clear();
+        router.push("/");
+      });
     }
-  });
-});
-
-function handleSignOut() {
-  signOut(auth).then(() => {
-    localStorage.clear();
-    router.push("/");
-  });
-}
+    return { isLogged, handleSignOut };
+  },
+};
 </script>
 
 <style scoped>

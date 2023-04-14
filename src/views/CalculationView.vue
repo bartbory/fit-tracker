@@ -231,12 +231,14 @@ export default defineComponent({
               }
               const responseData = response.data;
               data.value = responseData;
-              age.value =
-                new Date().getFullYear() - responseData.details.birthYear;
-              height.value = responseData.details.height;
-              weight.value = measurements.value[lastIndex.value];
-              gender.value = responseData.details.gender;
-              pal.value = responseData.details.pal;
+              if (responseData.details) {
+                age.value =
+                  new Date().getFullYear() - responseData.details.birthYear;
+                height.value = responseData.details.height;
+                weight.value = measurements.value[lastIndex.value];
+                gender.value = responseData.details.gender;
+                pal.value = responseData.details.pal;
+              }
             });
         }
       });

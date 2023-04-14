@@ -193,7 +193,11 @@ export default defineComponent({
           `https://fittracker-60473-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json?auth=${auth.currentUser?.getIdToken()}`
         )
         .then((response) => {
-          goal.value = response.data.details.weightGoal;
+          if (response.data.details) {
+            goal.value = response.data.details.weightGoal;
+          } else {
+            goal.value = 50;
+          }
           const measures = response.data.measurements;
           for (const key in measures) {
             const measure = {
@@ -213,7 +217,6 @@ export default defineComponent({
             };
 
             dates.value.push(measures[key].date);
-
             measurements.value.push(measure);
           }
           isLoading.value = false;

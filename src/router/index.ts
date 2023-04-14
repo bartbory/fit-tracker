@@ -86,7 +86,7 @@ router.beforeEach((to, from, next) => {
     if (getAuth().currentUser) {
       next();
     } else {
-      next({ name: "login" });
+      next({ name: "home" });
     }
   } else {
     next();

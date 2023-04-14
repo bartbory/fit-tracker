@@ -189,7 +189,7 @@ export default defineComponent({
         date: new Date(),
       };
       sendBodyMeasure(data);
-      router.push({ name: "measurement" });
+      router.push({ name: "profile" });
     }
     onMounted(() => {
       isLoading.value = true;

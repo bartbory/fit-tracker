@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <base-loading v-if="isLoading"></base-loading>
+  <section v-else>
     <form @submit.prevent="submitForm">
       <div class="form--row">
         <label>Weight [kg]</label>
@@ -256,6 +257,7 @@ export default defineComponent({
       tabOptions,
       setActiveTab,
       activeTab,
+      isLoading,
     };
   },
   components: { BaseTab, IconButton },

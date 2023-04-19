@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <base-loading v-if="isLoading"></base-loading>
+  <div v-else>
     <h2>Track the progress <br />of your transformation</h2>
     <nav-button mode="primary-alt" text="Login" name="login" />
     <nav-button mode="secondary-alt" text="Create account" name="register" />
@@ -7,10 +8,27 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { getAuth, onAuthStateChanged } from "@firebase/auth";
+import { defineComponent, onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 
 export default defineComponent({
   name: "HomeView",
+  setup() {
+    const router = useRouter();
+    const auth = getAuth();
+    const isLoading = ref(true);
+    onMounted(() => {
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          router.push({ name: "profile" });
+        } else {
+          isLoading.value = false;
+        }
+      });
+    });
+    return { isLoading };
+  },
 });
 </script>
 

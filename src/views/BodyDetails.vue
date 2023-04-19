@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <base-loading v-if="isLoading"></base-loading>
+  <section v-else>
     <p v-if="isLoading">Loading...</p>
     <form @submit.prevent="submitForm" v-else>
       <BaseTab
@@ -54,7 +55,7 @@
           <p class="description op60">{{ palDesc }}</p>
         </template>
       </base-info>
-      <base-button type="submit" text="Update" mode="primary"></base-button>
+      <base-button type="submit" text="Update" mode="secondary"></base-button>
     </form>
     <nav-button
       class="cta--fixed"

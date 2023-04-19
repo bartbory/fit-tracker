@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <base-loading v-if="isLoading"></base-loading>
+  <section v-else>
     <div class="container--row">
       <div class="container--chart">
         <base-card>

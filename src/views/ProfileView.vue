@@ -1,5 +1,6 @@
 <template>
-  <section>
+  <base-loading v-if="isLoading"></base-loading>
+  <section v-else>
     <h2 v-if="measurements.length >= 1">
       <span class="highlight"> {{ timeDistance() }} </span> days from last
       measures

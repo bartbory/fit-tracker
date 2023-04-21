@@ -188,6 +188,51 @@ label {
   animation: fade 0.5s ease-out 0.5s both;
 }
 
+.primary {
+  background-color: var(--highlight);
+  border: 1px solid var(--highlight-15);
+  color: var(--font);
+  transition: 0.3s;
+}
+.secondary {
+  background-color: var(--highlight2);
+  border: 1px solid var(--highlight2-15);
+  color: var(--background);
+  transition: 0.3s;
+}
+.primary-alt {
+  background-color: var(--highlight-15);
+  border: 1px solid var(--highlight-15);
+  color: var(--font);
+  transition: 0.3s;
+}
+.secondary-alt {
+  background-color: var(--highlight2-15);
+  border: 1px solid var(--highlight2-15);
+  color: var(--font);
+  transition: 0.3s;
+}
+
+.primary:hover {
+  background-color: var(--highlight-15);
+  border: 1px solid var(--highlight);
+  color: var(--font);
+}
+.primary-alt:hover {
+  background-color: var(--highlight-15);
+  border: 1px solid var(--highlight);
+  color: var(--font);
+}
+.secondary:hover {
+  background-color: var(--highlight2-15);
+  border: 1px solid var(--highlight2);
+  color: var(--highlight2);
+}
+.secondary-alt:hover {
+  background-color: var(--highlight2-15);
+  border: 1px solid var(--highlight2);
+  color: var(--font);
+}
 @keyframes fade {
   0% {
     opacity: 0;

@@ -1,7 +1,7 @@
 <template>
   <base-loading v-if="isLoading"></base-loading>
   <section v-else>
-    <p v-if="isLoading">Loading...</p>
+    <base-loading v-if="showProgress"></base-loading>
     <form @submit.prevent="submitForm" v-else>
       <BaseTab
         title="Gender"
@@ -13,7 +13,13 @@
         <label>Birth year</label>
         <div class="controler">
           <IconButton icon="decrement" @click="birthYear--" />
-          <input type="number" inputmode="numeric" v-model="birthYear" />
+          <input
+            type="number"
+            inputmode="numeric"
+            min="1920"
+            :max="new Date().getFullYear()"
+            v-model="birthYear"
+          />
           <IconButton icon="increment" @click="birthYear++" />
         </div>
       </div>
@@ -21,7 +27,13 @@
         <label>Height [cm]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="height--" />
-          <input type="number" inputmode="decimal" v-model="height" />
+          <input
+            type="number"
+            inputmode="decimal"
+            v-model="height"
+            min="50"
+            max="270"
+          />
           <IconButton icon="increment" @click="height++" />
         </div>
       </div>
@@ -29,7 +41,12 @@
         <label>Weight goal [kg]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="weightGoal--" />
-          <input type="number" inputmode="decimal" v-model="weightGoal" />
+          <input
+            type="number"
+            inputmode="decimal"
+            v-model="weightGoal"
+            min="20"
+          />
           <IconButton icon="increment" @click="weightGoal++" />
         </div>
       </div>
@@ -41,7 +58,13 @@
             @click="pal--"
             :class="[pal > 1 ? '' : 'disable']"
           />
-          <input type="number" inputmode="numeric" max="5" v-model="pal" />
+          <input
+            type="number"
+            inputmode="numeric"
+            min="1"
+            max="6"
+            v-model="pal"
+          />
           <IconButton
             icon="increment"
             @click="pal++"
@@ -53,6 +76,12 @@
         <template #default>
           <p class="description">PAL - Physic activity level</p>
           <p class="description op60">{{ palDesc }}</p>
+        </template>
+      </base-info>
+      <p class="error" v-if="!formIsValid">{{ error }}</p>
+      <base-info v-if="successMsg">
+        <template #default>
+          <p class="description">{{ successMsg }}</p>
         </template>
       </base-info>
       <base-button type="submit" text="Update" mode="secondary"></base-button>
@@ -82,6 +111,10 @@ export default defineComponent({
   name: "BodyDetails",
   setup() {
     const uid = localStorage.getItem("uid");
+    const formIsValid: Ref<boolean> = ref(true);
+    const showProgress: Ref<boolean> = ref(false);
+    const error: Ref<string> = ref("");
+    const successMsg: Ref<string> = ref("");
     const isLoading: Ref<boolean> = ref(true);
     const data: Ref<IUser | null> = ref(null);
     const gender: Ref<"male" | "female"> = ref("male");
@@ -130,7 +163,19 @@ export default defineComponent({
     function setGender(g: "male" | "female") {
       gender.value = g;
     }
-    function submitForm() {
+    async function submitForm() {
+      if (
+        birthYear.value <= 1923 ||
+        height.value >= 270 ||
+        weightGoal.value <= 10 ||
+        pal.value > 7 ||
+        pal.value < 1
+      ) {
+        formIsValid.value === false;
+        error.value = "Some data in form is out of possible range";
+        return;
+      }
+      showProgress.value = true;
       const userDetails = {
         gender: gender.value,
         birthYear: birthYear.value,
@@ -138,7 +183,16 @@ export default defineComponent({
         weightGoal: weightGoal.value,
         pal: pal.value,
       };
-      updateDetails(userDetails);
+      await updateDetails(userDetails);
+      showProgress.value = false;
+      successMsg.value = "Your data have been updated";
+      resetSuccessMsg();
+    }
+
+    function resetSuccessMsg() {
+      setTimeout(() => {
+        successMsg.value = "";
+      }, 2500);
     }
     onMounted(() => {
       const auth = getAuth();
@@ -185,6 +239,10 @@ export default defineComponent({
       inputsOptions,
       setAge,
       palDesc,
+      formIsValid,
+      showProgress,
+      error,
+      successMsg,
     };
   },
   components: { BaseTab, BaseInput, IconButton },

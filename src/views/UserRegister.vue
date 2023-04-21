@@ -1,6 +1,7 @@
 <template>
   <section>
-    <form @submit.prevent="submitForm">
+    <base-loading v-if="showProgress"></base-loading>
+    <form @submit.prevent="submitForm" v-if="!showProgress">
       <div class="form--row">
         <label>Name</label>
         <input type="text" id="name" v-model.trim="name" />
@@ -31,11 +32,7 @@
 <script lang="ts">
 import { defineComponent, ref, Ref } from "vue";
 import { useRouter } from "vue-router";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import createUser from "../helpers/createUser";
 
 export default defineComponent({
@@ -47,6 +44,7 @@ export default defineComponent({
     const name: Ref<string> = ref("");
 
     const formIsValid: Ref<boolean> = ref(true);
+    const showProgress: Ref<boolean> = ref(false);
     const error: Ref<string> = ref("");
 
     function submitForm() {
@@ -54,17 +52,20 @@ export default defineComponent({
       if (
         email.value === "" ||
         !email.value.includes("@") ||
-        pass.value.length < 6
+        pass.value.length < 6 ||
+        name.value.trim() === ""
       ) {
+        console.log("checking");
         formIsValid.value = false;
         error.value =
-          "Check your data. Password must contain at least 6 characters";
+          "Check your data. All fields is required. Password must contain at least 6 characters";
         return;
       }
+
+      showProgress.value = true;
+
       createUserWithEmailAndPassword(getAuth(), email.value, pass.value)
         .then((data) => {
-          if (name.value.trim() !== "")
-            console.log("Successfully registred!", data);
           const userData = {
             id: data.user.uid,
             name: name.value.trim(),
@@ -75,10 +76,15 @@ export default defineComponent({
           localStorage.setItem("name", `${name.value.trim()}`);
           createUser(userData);
           router.push({ name: "setup" });
+          showProgress.value = false;
         })
-        .catch((error) => {
-          const errorCode = error.code;
-          error.value = error.message;
+        .catch((err) => {
+          showProgress.value = false;
+          console.log(showProgress.value);
+          if (err.code === "auth/email-already-in-use") {
+            formIsValid.value = false;
+            error.value = "This e-mail is already in use";
+          }
         });
     }
 
@@ -89,6 +95,7 @@ export default defineComponent({
       formIsValid,
       submitForm,
       error,
+      showProgress,
     };
   },
 });

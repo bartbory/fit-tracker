@@ -44,26 +44,6 @@ a {
   margin: 8px 0;
 }
 
-.primary {
-  background-color: var(--highlight);
-  border: 1px solid var(--highlight-15);
-  color: var(--font);
-}
-.secondary {
-  background-color: var(--highlight2);
-  border: 1px solid var(--highlight2-15);
-  color: var(--background);
-}
-.primary-alt {
-  background-color: var(--highlight-15);
-  border: 1px solid var(--highlight-15);
-  color: var(--font);
-}
-.secondary-alt {
-  background-color: var(--highlight2-15);
-  border: 1px solid var(--highlight2-15);
-  color: var(--font);
-}
 
 .active {
   background-color: var(--highlight);

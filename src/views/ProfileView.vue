@@ -9,7 +9,7 @@
       <nav-button
         name="measurement"
         mode="secondary"
-        text="Dodaj pomiar"
+        text="Add measurement"
       ></nav-button>
       <base-info
         ><p>

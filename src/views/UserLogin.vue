@@ -43,6 +43,7 @@ export default defineComponent({
     const name: Ref<string> = ref("");
 
     const formIsValid: Ref<boolean> = ref(true);
+    const showProgress: Ref<boolean> = ref(false);
     const error: Ref<string> = ref("");
 
     function submitForm() {
@@ -53,18 +54,30 @@ export default defineComponent({
         pass.value.length < 6
       ) {
         formIsValid.value = false;
-        error.value =
-          "Check your data if e-mail is correct or password have at least 6 characters";
+        error.value = "This data is wrong, try again";
         return;
       }
+      showProgress.value = true;
       signInWithEmailAndPassword(getAuth(), email.value, pass.value)
         .then((data) => {
           localStorage.setItem("uid", `${data.user.uid}`);
           router.push({ name: `profile` });
         })
-        .catch((error) => {
-          const errorCode = error.code;
-          error.value = error.message;
+        .catch((err) => {
+          showProgress.value = false;
+          formIsValid.value = false;
+          console.log(err.code);
+          const errCode = err.code;
+          if (err.code === "auth/wrong-password") {
+            error.value = "Password is incorrect";
+          }
+          if (err.code === "auth/too-many-requests") {
+            error.value =
+              "You reach the limit of login attempts... Need to wait.";
+          }
+          if (err.code === "auth/user-not-found") {
+            error.value = "This e-mail is not registred";
+          }
         });
     }
 
@@ -79,6 +92,7 @@ export default defineComponent({
       formIsValid,
       submitForm,
       signInWithGoogle,
+      showProgress,
       error,
     };
   },

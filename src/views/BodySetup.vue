@@ -31,7 +31,12 @@
         <label>Weight goal [kg]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="weightGoal--" />
-          <input type="number" inputmode="decimal" v-model="weightGoal" />
+          <input
+            type="number"
+            inputmode="decimal"
+            v-model="weightGoal"
+            step="0.1"
+          />
           <IconButton icon="increment" @click="weightGoal++" />
         </div>
       </div>

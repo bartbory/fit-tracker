@@ -46,6 +46,7 @@
             inputmode="decimal"
             v-model="weightGoal"
             min="20"
+            step="0.1"
           />
           <IconButton icon="increment" @click="weightGoal++" />
         </div>

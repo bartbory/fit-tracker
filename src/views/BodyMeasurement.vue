@@ -6,7 +6,12 @@
         <label>Weight [kg]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="weight--" />
-          <input v-model="weight" type="number" inputmode="decimal" />
+          <input
+            v-model="weight"
+            type="number"
+            inputmode="decimal"
+            step="0.1"
+          />
           <IconButton icon="increment" @click="weight++" />
         </div>
       </div>
@@ -20,7 +25,12 @@
           <label>Neck [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="neck--" />
-            <input v-model="neck" type="number" inputmode="decimal" />
+            <input
+              v-model="neck"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="neck++" />
           </div>
         </div>
@@ -28,7 +38,12 @@
           <label>Chest [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="chest--" />
-            <input v-model="chest" type="number" inputmode="decimal" />
+            <input
+              v-model="chest"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="chest++" />
           </div>
         </div>
@@ -36,7 +51,12 @@
           <label>Waist [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="waist--" />
-            <input v-model="waist" type="number" inputmode="decimal" />
+            <input
+              v-model="waist"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="waist++" />
           </div>
         </div>
@@ -44,7 +64,12 @@
           <label>Hips [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="hips--" />
-            <input v-model="hips" type="number" inputmode="decimal" />
+            <input
+              v-model="hips"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="hips++" />
           </div>
         </div>
@@ -55,7 +80,12 @@
           <label>Left biceps [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="leftArm--" />
-            <input v-model="leftArm" type="number" inputmode="decimal" />
+            <input
+              v-model="leftArm"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="leftArm++" />
           </div>
         </div>
@@ -63,7 +93,12 @@
           <label>Right biceps [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="rightArm--" />
-            <input v-model="rightArm" type="number" inputmode="decimal" />
+            <input
+              v-model="rightArm"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="rightArm++" />
           </div>
         </div>
@@ -71,7 +106,12 @@
           <label>Left forearm [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="leftForearm--" />
-            <input v-model="leftForearm" type="number" inputmode="decimal" />
+            <input
+              v-model="leftForearm"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="leftForearm++" />
           </div>
         </div>
@@ -79,7 +119,12 @@
           <label>Right forearm [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="rightForearm--" />
-            <input v-model="rightForearm" type="number" inputmode="decimal" />
+            <input
+              v-model="rightForearm"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="rightForearm++" />
           </div>
         </div>
@@ -90,7 +135,12 @@
           <label>Left thigh [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="leftThigh--" />
-            <input v-model="leftThigh" type="number" inputmode="decimal" />
+            <input
+              v-model="leftThigh"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="leftThigh++" />
           </div>
         </div>
@@ -98,7 +148,12 @@
           <label>Right thigh [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="rightThigh--" />
-            <input v-model="rightThigh" type="number" inputmode="decimal" />
+            <input
+              v-model="rightThigh"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="rightThigh++" />
           </div>
         </div>
@@ -106,7 +161,12 @@
           <label>Left calf [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="leftCalf--" />
-            <input v-model="leftCalf" type="number" inputmode="decimal" />
+            <input
+              v-model="leftCalf"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="leftCalf++" />
           </div>
         </div>
@@ -114,7 +174,12 @@
           <label>Right calf [cm]</label>
           <div class="controler">
             <IconButton icon="decrement" @click="rightCalf--" />
-            <input v-model="rightCalf" type="number" inputmode="decimal" />
+            <input
+              v-model="rightCalf"
+              type="number"
+              inputmode="decimal"
+              step="0.1"
+            />
             <IconButton icon="increment" @click="rightCalf++" />
           </div>
         </div>

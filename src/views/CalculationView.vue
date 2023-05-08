@@ -9,7 +9,7 @@
         @setActiveTab="setGender"
       />
       <div class="form--row">
-        <label>Birth year</label>
+        <label>Age</label>
         <div class="controler">
           <IconButton icon="decrement" @click="age--" />
           <input type="number" inputmode="numeric" v-model.lazy="age" />
@@ -28,7 +28,12 @@
         <label>Weight [kg]</label>
         <div class="controler">
           <IconButton icon="decrement" @click="weight--" />
-          <input type="number" inputmode="numeric" v-model.lazy="weight" />
+          <input
+            type="number"
+            inputmode="numeric"
+            v-model.lazy="weight"
+            step="0.1"
+          />
           <IconButton icon="increment" @click="weight++" />
         </div>
       </div>

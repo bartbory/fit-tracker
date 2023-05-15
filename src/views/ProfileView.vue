@@ -147,7 +147,7 @@ export default defineComponent({
       const lastIndex = measurements.value.length;
       const last = measurements.value[lastIndex - 1];
       if (last) {
-        return last.weight - goal.value;
+        return +(last.weight - goal.value).toFixed(2);
       } else {
         return 0;
       }
@@ -156,10 +156,10 @@ export default defineComponent({
     function changeCalc(key: keyof BodyMeasurement) {
       const lastIndex = measurements.value.length;
       if (measurements.value.length > 1) {
-        return (
+        return +(
           measurements.value[lastIndex - 1][key] -
           measurements.value[lastIndex - 2][key]
-        );
+        ).toFixed(2);
       } else {
         return measurements.value[lastIndex - 1][key];
       }
